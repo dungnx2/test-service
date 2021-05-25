@@ -22,7 +22,7 @@ pipeline {
         
         stage ('BuildDocker') {
             steps {
-                    sh 'docker build -f Dockerfile -t dungnx2/test-service:1.0.1 .'
+                    sh '/usr/bin/docker build -f Dockerfile -t dungnx2/test-service:1.0.1 .'
             }
         }
     }
