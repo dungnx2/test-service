@@ -1,10 +1,9 @@
 pipeline {
 	
-	agent {
-	    node {
-	      label 'maven'
-	    }
-	  }
+	  
+	agent{
+        label 'maven'
+    }  
 	
     stages {
         stage ('checkout scm') {
