@@ -1,12 +1,9 @@
 pipeline {
 	
-	  
-	agent {
-        docker { image 'node:14-alpine' }
-    }
 	
 	tools { 
         maven 'maven'
+        docker 'docker'
     }
 	
     stages {
