@@ -15,6 +15,12 @@ pipeline {
                 checkout(scm)
             }
         }
+        
+        stage ('sonar') {
+            steps {
+                sh 'sonar-scanner -Dsonar.projectKey=sonar-test1 -Dsonar.sources=src/main/java -Dsonar.sourceEncoding=UTF-8 -Dsonar.language=java -Dsonar.java.binaries=.'
+            }
+        }
 
         stage ('Build') {
             steps {
