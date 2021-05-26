@@ -19,7 +19,7 @@ pipeline {
         stage ('sonar') {
             steps {
             	withSonarQubeEnv("sonar") {
-                	sh 'sonar-scanner -Dsonar.projectKey=sonar-test1 -Dsonar.sources=src/main/java -Dsonar.sourceEncoding=UTF-8 -Dsonar.language=java -Dsonar.java.binaries=.'
+                	sh '/Users/nguyenxuandung/Documents/workspace/tools/sonar-scanner/bin/sonar-scanner -Dsonar.projectKey=sonar-test1 -Dsonar.sources=src/main/java -Dsonar.sourceEncoding=UTF-8 -Dsonar.language=java -Dsonar.java.binaries=.'
             	}
             }
         }
