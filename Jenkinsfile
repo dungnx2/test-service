@@ -16,10 +16,15 @@ pipeline {
             }
         }
         
-        stage ('sonar') {
+        stage ('Sonar Scan') {
+        	environment {
+
+                scannerHome = tool 'sonar'
+
+            }
             steps {
             	withSonarQubeEnv("sonar") {
-                	sh '/Users/nguyenxuandung/Documents/workspace/tools/sonar-scanner/bin/sonar-scanner -Dsonar.projectKey=sonar-test1 -Dsonar.sources=src/main/java -Dsonar.sourceEncoding=UTF-8 -Dsonar.language=java -Dsonar.java.binaries=.'
+                	sh '${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=sonar-test1 -Dsonar.sources=src/main/java -Dsonar.sourceEncoding=UTF-8 -Dsonar.language=java -Dsonar.java.binaries=.'
             	}
             }
         }
@@ -36,7 +41,7 @@ pipeline {
             }
         }
         
-        stage ('Push Docker Hub') {
+        stage ('Push to Docker Hub') {
             steps {
                     withCredentials([usernamePassword(passwordVariable : 'DOCKER_PASSWORD' ,usernameVariable : 'DOCKER_USERNAME' ,credentialsId : "$DOCKER_CREDENTIAL_ID" ,)]) {
                         sh 'echo "$DOCKER_PASSWORD" | docker login $REGISTRY -u "$DOCKER_USERNAME" --password-stdin'
